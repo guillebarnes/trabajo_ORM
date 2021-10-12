@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@Entity(name = "persona")
 @Table(name = "persona")
 public class Persona {
     @Id
@@ -20,22 +20,22 @@ public class Persona {
     @JoinColumn(name = "persona_dni", referencedColumnName = "id", nullable = false)
     private Dni dni;
 
-    @Column(name = "usuario_nombre", nullable = false)
+    @Column(name = "persona_nombre", nullable = false)
     private String nombre;
 
-    @Column(name = "usuario_apellido", nullable = false)
+    @Column(name = "persona_apellido", nullable = false)
     private String apellido;
 
-    @Column(name = "usuario_fecha_nacimiento")
+    @Column(name = "persona_fecha_nacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNac;
 
     @OneToOne
-    @JoinColumn(name = "usuario_ciudad", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "persona_ciudad", referencedColumnName = "id", nullable = true)
     private Ciudad ciudad;
 
     @OneToOne
-    @JoinColumn(name = "usuario_localidad", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "persona_localidad", referencedColumnName = "id", nullable = true)
     private Ciudad localidad;
 
     //revisar
@@ -52,6 +52,22 @@ public class Persona {
     public Persona(Dni dni, String nombre, String apellido) {
         this.dni = dni;
         this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDni(Dni dni) {
+        this.dni = dni;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
