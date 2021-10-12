@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@DiscriminatorValue("0")
+@DiscriminatorValue("confirmada")
 public class Confirmada extends Estado {
 
     public Confirmada() {
