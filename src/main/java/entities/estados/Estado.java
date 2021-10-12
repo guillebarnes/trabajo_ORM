@@ -8,7 +8,6 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "estado_tipo")
 public abstract class Estado {
     @Id
-    @GeneratedValue
     private int id;
 
     public Estado() {

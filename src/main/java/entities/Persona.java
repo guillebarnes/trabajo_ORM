@@ -42,7 +42,7 @@ public class Persona {
     @Transient
     private String foto;
 
-    @OneToMany(cascade = { CascadeType.ALL })
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
     @JoinColumn(name = "delegacion_persona")
     private List<Delegacion> delegados = new ArrayList<>();
 
