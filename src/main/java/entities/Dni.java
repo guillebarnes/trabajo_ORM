@@ -20,6 +20,9 @@ public class Dni {
         this.nroDni = nroDni;
     }
 
+    public Dni() {
+    }
+
     public int getId() { return id; }
 
     public String getTipoDni() {

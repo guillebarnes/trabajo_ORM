@@ -46,6 +46,9 @@ public class Persona {
     @JoinColumn(name = "delegacion_persona")
     private List<Delegacion> delegados = new ArrayList<>();
 
+    public Persona() {
+    }
+
     public Persona(Dni dni, String nombre, String apellido) {
         this.dni = dni;
         this.nombre = nombre;
