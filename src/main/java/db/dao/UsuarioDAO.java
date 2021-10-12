@@ -4,10 +4,12 @@ import db.EntityManagerHelper;
 import entities.Usuario;
 
 public class UsuarioDAO {
-   // public static int usuarioValido(String user, String password){
-        //EntityManagerHelper.beginTransaction();
-            //EntityManagerHelper.getEntityManager().find(user, password);
-    //}
+    public static Long usuarioValido(String user, String password){
+        EntityManagerHelper.beginTransaction();
+            return (Long) EntityManagerHelper.getEntityManager()
+                    .createQuery("SELECT COUNT(*) FROM usuario WHERE usuario_nombre = '" + user + "' AND usuario_password = '" + password +"'")
+                    .getSingleResult();
+    }
 
     public static void save(Usuario usuario){
         EntityManagerHelper.beginTransaction();
