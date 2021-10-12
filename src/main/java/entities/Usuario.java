@@ -1,9 +1,25 @@
 package entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "usuario")
 public class Usuario {
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Column(name = "usuario_nombre", unique = true)
     private String usuario;
+
+    @Column(name = "usuario_password")
     private String contrasena;
+
+    @Column(name = "usuario_permiso")
     private boolean administrador;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_persona", referencedColumnName = "id")
     private Persona datos;
 
     public Usuario(String usuario, String contrasena, boolean administrador) {
@@ -11,6 +27,9 @@ public class Usuario {
         this.contrasena = contrasena;
         this.administrador = administrador;
     }
+
+
+    public int getId(){ return this.id; }
 
     public String getUsuario() {
         return usuario;
