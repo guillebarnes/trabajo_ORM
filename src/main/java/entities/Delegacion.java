@@ -3,7 +3,7 @@ package entities;
 import entities.estados.Estado;
 
 import javax.persistence.*;
-@Entity
+@Entity(name = "delegacion")
 @Table(name="delegacion")
 public class Delegacion {
     @Id
@@ -21,6 +21,9 @@ public class Delegacion {
     public Delegacion(Persona delegado, Estado estado) {
         this.delegado = delegado;
         this.estado = estado;
+    }
+
+    public Delegacion() {
     }
 
     public Persona getDelegado() {
