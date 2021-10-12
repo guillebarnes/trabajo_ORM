@@ -11,4 +11,7 @@ public class PersonaDAO {
 
         EntityManagerHelper.commit();
     }
+    public static Persona findById(int id){
+        return EntityManagerHelper.getEntityManager().find(Persona.class, id);
+    }
 }
