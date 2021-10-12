@@ -28,6 +28,8 @@ public class Usuario {
         this.administrador = administrador;
     }
 
+    public Usuario() {
+    }
 
     public int getId(){ return this.id; }
 
