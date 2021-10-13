@@ -7,9 +7,12 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 
+import java.util.List;
+
 public class PersonaController {
     public static void definePaths(){
         Spark.get("/id", PersonaController::id);
+        Spark.get("/all", PersonaController::all);
     }
 
     public static String id(Request req, Response res){
@@ -27,5 +30,13 @@ public class PersonaController {
         }
 
 
+    }
+
+    public static String all(Request req, Response res){
+        res.type("application/json");
+        Gson gson = new Gson();
+        List<Persona> personas = PersonaDAO.findAll();
+
+        return gson.toJson(personas);
     }
 }

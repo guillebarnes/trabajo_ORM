@@ -3,8 +3,8 @@ package db.dao;
 import db.EntityManagerHelper;
 import entities.Persona;
 
+import javax.persistence.Query;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class PersonaDAO {
@@ -19,10 +19,12 @@ public class PersonaDAO {
         return EntityManagerHelper.getEntityManager().find(Persona.class, id);
     }
 
-    public static void findAll(){
-        EntityManagerHelper.getEntityManager().createQuery("SELECT id, 'persona_nombre', 'persona_apellido' FROM persona").getResultList();
-
-        //debe retornar la lista de todas las personas registradas.
+    public static List<Persona> findAll(){
+        EntityManagerHelper.beginTransaction();
+            Query query = EntityManagerHelper.getEntityManager().createQuery("SELECT p FROM persona p");
+            List<Persona> personas = new ArrayList<>();
+            personas = query.getResultList();
+            return personas;
     }
 
     public static Long findByDni(int dni){

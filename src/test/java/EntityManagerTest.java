@@ -32,7 +32,10 @@ public class EntityManagerTest {
         System.out.println(personaEncontrada.getId() + " " + personaEncontrada.getNombre() + " " + personaEncontrada.getApellido() + " " +personaEncontrada.getDni().getNroDni());
     }
     @Test
-    public void pruebaPersonaConDelegado(){
+    public void pruebaTodasLasPersonas(){
+        List<Persona> personas = PersonaDAO.findAll();
 
+        for(Persona p : personas)
+            System.out.println(p.getNombre());
     }
 }
