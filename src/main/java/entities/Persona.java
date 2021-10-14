@@ -30,11 +30,11 @@ public class Persona {
     @Temporal(TemporalType.DATE)
     private Date fechaNac;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER,cascade = { CascadeType.ALL })
     @JoinColumn(name = "persona_ciudad", referencedColumnName = "id", nullable = true)
     private Ciudad ciudad;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER,cascade = { CascadeType.ALL })
     @JoinColumn(name = "persona_localidad", referencedColumnName = "id", nullable = true)
     private Ciudad localidad;
 

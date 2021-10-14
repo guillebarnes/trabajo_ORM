@@ -2,7 +2,7 @@ package entities;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "ciudad")
 @Table(name = "ciudad")
 public class Ciudad {
     @Id
@@ -11,6 +11,9 @@ public class Ciudad {
 
     @Column(name = "ciudad_nombre")
     private String nombre;
+
+    public Ciudad() {
+    }
 
     public Ciudad(String nombre) {
         this.nombre = nombre;
