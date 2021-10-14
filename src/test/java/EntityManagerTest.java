@@ -1,18 +1,27 @@
 import db.EntityManagerHelper;
 import db.dao.PersonaDAO;
 import db.dao.UsuarioDAO;
+import entities.Ciudad;
 import entities.Dni;
 import entities.Persona;
 import entities.Usuario;
+import org.hibernate.Hibernate;
 import org.junit.Test;
+import spark.Request;
+import spark.Response;
 
+import java.util.Date;
 import java.util.List;
 
 public class EntityManagerTest {
 
     @Test
     public void pruebaInsert(){
-        PersonaDAO.save(new Persona(new Dni("DNI", 99999999), "Roberto", "Carlos"));
+        Persona persona = new Persona(new Dni("DNI", 33333333), "Macarena", "Gomez");
+        persona.setCiudad(new Ciudad("Buenos Aires"));
+        persona.setLocalidad(new Ciudad("Moreno"));
+        persona.setFechaNac(new Date("8/18/1995"));
+        PersonaDAO.save(persona);
     }
 
     @Test
@@ -36,6 +45,25 @@ public class EntityManagerTest {
         List<Persona> personas = PersonaDAO.findAll();
 
         for(Persona p : personas)
+            System.out.println(p.getNombre() + p.getDni().getNroDni());
+    }
+    @Test
+    public void registrar() {
+        try{
+            Persona p = PersonaDAO.findByDni(39340409);
             System.out.println(p.getNombre());
+        }
+        catch(Exception e){
+            System.out.println("No se encontro persona con ese dni");
+        }
+    }
+
+    @Test
+    public void actualizarDatos(){
+        Persona persona = PersonaDAO.findById(1);
+        persona.setCiudad(new Ciudad("Buenos Aires"));
+        persona.setCiudad(new Ciudad("Moreno"));
+        persona.setFechaNac(new Date(12/15/1995));
+        PersonaDAO.actualizarDatos(persona);
     }
 }
