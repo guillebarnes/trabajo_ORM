@@ -1,10 +1,12 @@
 package db.dao;
 
 import db.EntityManagerHelper;
+import entities.Ciudad;
 import entities.Persona;
 
 import javax.persistence.Query;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PersonaDAO {
@@ -27,8 +29,17 @@ public class PersonaDAO {
             return personas;
     }
 
-    public static Long findByDni(int dni){
-        String query = "SELECT COUNT(*) FROM persona p INNER JOIN dni d ON p.persona_dni = d.id WHERE d.dni_nro = " + dni;
-        return (Long) EntityManagerHelper.getEntityManager().createNativeQuery(query).getSingleResult();
+    public static Persona findByDni(int dni){
+            List<Persona> personas = PersonaDAO.findAll();
+            for(Persona p : personas){
+                if(p.getDni().getNroDni() == dni)
+                    return p;
+            }
+            return null;
+    }
+    public static void actualizarDatos(Persona persona){
+        EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.getEntityManager().refresh(persona);
+        EntityManagerHelper.commit();
     }
 }
