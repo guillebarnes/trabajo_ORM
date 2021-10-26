@@ -10,8 +10,8 @@ import spark.Spark;
 
 public class UsuarioController {
     public static void definePaths() {
-        Spark.get("/check", UsuarioController::check);
-        Spark.post("/registrar", UsuarioController::registrar);
+        Spark.get("/", UsuarioController::check);
+        Spark.post("/", UsuarioController::registrar);
     }
 
     public static String check(Request req, Response res) {
@@ -22,11 +22,10 @@ public class UsuarioController {
 
         Long respuesta = UsuarioDAO.usuarioValido(usuario, contraseña);
 
+        res.status(200);
         if (respuesta == 1) {
-            res.status(200);
             return "{\"status\":200, \"msg\":Sesion iniciada correctamente}";
         } else {
-            res.status(200);
             return "{\"status\":200, \"msg\":Usuario o contraseña incorrecta}";
         }
     }

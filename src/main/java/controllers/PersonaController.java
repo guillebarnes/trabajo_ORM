@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PersonaController {
     public static void definePaths(){
-        Spark.get("/id", PersonaController::id);
+        Spark.get("/", PersonaController::id);
         Spark.get("/all", PersonaController::all);
     }
 
